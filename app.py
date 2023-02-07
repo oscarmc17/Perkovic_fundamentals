@@ -11,4 +11,4 @@ root = Tk()
 button = Button(root, text='click it', command = clicked)
 
 button.pack()
-root.mainloop()
+# root.mainloop()
