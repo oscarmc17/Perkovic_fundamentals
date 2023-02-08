@@ -25,12 +25,40 @@ from tkinter.messagebox import showinfo
 # root.mainloop()
 
 
+# def compute():
+#     global dateEnt
+
+#     date = dateEnt.get()
+#     weekday = strftime('%A', strptime(date, '%b %d, %Y'))
+#     showinfo(message='{} was a {}'.format(date, weekday))
+#     dateEnt.delete(0, END)
+
+# root = Tk()
+
+# # label
+# label = Label(root, text='Enter date')
+# label.grid(row=0, column=0)
+
+# # entry
+# dateEnt = Entry(root)
+# dateEnt.grid(row=0, column=1)
+
+# # button
+# button = Button(root, text='Enter', command=compute)
+# button.grid(row=1, column=0, columnspan=2)
+
+# root.mainloop()
+
+
 def compute():
     global dateEnt
 
     date = dateEnt.get()
     weekday = strftime('%A', strptime(date, '%b %d, %Y'))
-    showinfo(message='{} was a {}'.format(date, weekday))
+    # showinfo(message='{} was a {}'.format(date, weekday))
+    dateEnt.insert(0, weekday+' ')
+
+def clear():
     dateEnt.delete(0, END)
 
 root = Tk()
@@ -46,5 +74,9 @@ dateEnt.grid(row=0, column=1)
 # button
 button = Button(root, text='Enter', command=compute)
 button.grid(row=1, column=0, columnspan=2)
+
+# Delete Button
+delBut = Button(root, command=clear, text="Clear")
+delBut.grid(row=1, column=0, columnspan=1)
 
 root.mainloop()
