@@ -57,13 +57,43 @@ from tkinter.messagebox import showinfo
 # root.mainloop()
 
 # ------------------------------- 9.5 -------------------------------
-def record(event):
-    print('char = {}'.format(event.keysym))
+# def record(event):
+#     print('char = {}'.format(event.num))
+
+# root = Tk()
+# text = Text(root, width=20, height=5)
+# text.bind('<KeyPress>', record)
+# text.pack(expand=True, fill=BOTH)
+
+# root.mainloop()
+
+def compute():
+    global dateEnt
+
+    date = dateEnt.get()
+    weekday = strftime('%A', strptime(date, '%b %d, %Y'))
+    showinfo(message='{} was a {}'.format(date, weekday))
+    dateEnt.insert(0, weekday+' ')
+    # dateEnt.delete(0, END)
+
+def compute2(event):
+    compute()
 
 root = Tk()
-text = Text(root, width=20, height=5)
-text.bind('<KeyPress>', record)
-text.pack(expand=True, fill=BOTH)
+
+# label
+label = Label(root, text='Enter date')
+label.grid(row=0, column=0)
+
+# entry
+dateEnt = Entry(root)
+dateEnt.grid(row=0, column=1)
+
+# button
+button = Button(root, text='Enter', command=compute)
+button.grid(row=1, column=0, columnspan=2)
+
+# Bind a key press event handling function record()
+dateEnt.bind('<Return>', compute2)
 
 root.mainloop()
-
