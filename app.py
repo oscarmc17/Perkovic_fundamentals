@@ -106,17 +106,23 @@ root = Tk()
 
 def begin(event):
     'initializes the start of the curve to mouse position'
-    global oldx, oldy
+    global oldx, oldy, curve
     oldx, oldy = event.x, event.y
+    curve = []
 
 
 def draw(event):
-    global oldx, oldy, canvas
+    global oldx, oldy, canvas, curve
     newx, newy = event.x, event.y
 
-    canvas.create_line(oldx, oldy, newx, newy)
-
+    curve.append(canvas.create_line(oldx, oldy, newx, newy))
     oldx, oldy = newx, newy
+
+def delete(event):
+    'delete last curve drawn'
+    global curve
+    for segment in curve:
+        canvas.delete(segment)
 
 
 oldx, oldy = 0, 0
@@ -125,6 +131,7 @@ canvas = Canvas(root, height=150, width=300)
 
 canvas.bind("<Button-1>", begin)
 canvas.bind("<Button1-Motion>", draw)
+canvas.bind('<Control-Button-1>', delete)
 
 canvas.pack()
 root.mainloop()
