@@ -139,47 +139,77 @@ from tkinter.messagebox import showinfo
 
 # ------------------------------- 9.7 -------------------------------
 
+# root = Tk()
+
+# def up():
+#     global y, canvas
+#     canvas.create_line(x, y, x, y-10)
+#     y -= 10
+
+
+# def left():
+#     global x, canvas
+#     canvas.create_line(x, y, x-10, y)
+#     x -= 10
+
+
+# def right():
+#     global x, canvas
+#     canvas.create_line(x, y, x+10, y)
+#     x += 10
+
+
+# def down():
+#     global y, canvas
+#     canvas.create_line(x, y, x, y+10)
+#     y += 10
+
+
+# canvas = Canvas(root, height=100, width=150, relief=SUNKEN, borderwidth=3)
+# canvas.pack(side=LEFT)
+
+# box = Frame(root)
+# box.pack(side=RIGHT)
+
+# button = Button(box, text='Up', command=up)
+# button.grid(row=0, column=0, columnspan=2)
+# button = Button(box, text='Left', command=left)
+# button.grid(row=1, column=0)
+# button = Button(box, text='right', command=right)
+# button.grid(row=1, column=1)
+# button = Button(box, text='down', command=down)
+# button.grid(row=2, column=0, columnspan=2)
+
+# x, y = 50, 75
+
+# root.mainloop()
+
+
+# ------------------------------- 9.8 -------------------------------
+
+# def clicked():
+#     time = strftime('Day: %d %b %Y\nTime: %H:%M:%S %p\n', localtime())
+#     showinfo(message=time)
+
+# root = Tk()
+# button = Button(root, text='Click it', command=clicked)
+
+# button.pack()
+# root.mainloop()
+
+
+class ClickIt(Frame):
+    def __init__(self, master):
+        Frame.__init__(self, master)
+        self.pack()
+        button = Button(self, text='Click it', command=self.clicked)
+        button.pack()
+
+    def clicked(self):
+        time = strftime('Day: %d %b %Y\nTime: %H:%M:%S %p\n', localtime())
+        showinfo(message=time)
+
 root = Tk()
-
-def up():
-    global y, canvas
-    canvas.create_line(x, y, x, y-10)
-    y -= 10
-
-
-def left():
-    global x, canvas
-    canvas.create_line(x, y, x-10, y)
-    x -= 10
-
-
-def right():
-    global x, canvas
-    canvas.create_line(x, y, x+10, y)
-    x += 10
-
-
-def down():
-    global y, canvas
-    canvas.create_line(x, y, x, y+10)
-    y += 10
-
-
-canvas = Canvas(root, height=100, width=150, relief=SUNKEN, borderwidth=3)
-canvas.pack(side=LEFT)
-
-box = Frame(root)
-box.pack(side=RIGHT)
-
-button = Button(box, text='Up', command=up)
-button.grid(row=0, column=0, columnspan=2)
-button = Button(box, text='Left', command=left)
-button.grid(row=1, column=0)
-button = Button(box, text='right', command=right)
-button.grid(row=1, column=1)
-button = Button(box, text='down', command=down)
-button.grid(row=2, column=0, columnspan=2)
-
-x, y = 50, 75
-
+app = ClickIt(root)
+app.pack()
 root.mainloop()
