@@ -187,59 +187,70 @@ from tkinter.messagebox import showinfo
 
 # ------------------------------- 9.8 -------------------------------
 
-# def clicked():
-#     time = strftime('Day: %d %b %Y\nTime: %H:%M:%S %p\n', localtime())
-#     showinfo(message=time)
+# class ClickIt(Frame):
+#     def __init__(self, master):
+#         Frame.__init__(self, master)
+#         self.pack()
+#         button = Button(self, text='Click it', command=self.clicked)
+#         button.pack()
+
+#     def clicked(self):
+#         time = strftime('Day: %d %b %Y\nTime: %H:%M:%S %p\n', localtime())
+#         showinfo(message=time)
+
+# class Day(Frame):
+
+#     def __init__(self, master):
+#         Frame.__init__(self, master)
+#         self.pack()
+
+#         label = Label(self, text='Enter date')
+#         label.grid(row=0, column=0)
+
+#         self.dateEnt = Entry(self)
+#         self.dateEnt.grid(row=0, column=1)
+
+#         button = Button(self, text='Enter', command=self.compute)
+#         button.grid(row=1, column=0, columnspan=2)
+
+#     def compute(self):
+
+#         date = self.dateEnt.get()
+#         weekday = strftime('%A', strptime(date, '%b %d, %Y'))
+#         showinfo(message='{} was a {}'.format(date, weekday))
+#         self.dateEnt.delete(0, END)
 
 # root = Tk()
-# button = Button(root, text='Click it', command=clicked)
-
-# button.pack()
+# day = Day(root)
+# day.pack()
+# clickit = ClickIt(root)
+# clickit.pack()
 # root.mainloop()
 
+# ------------------------------- 9.9 -------------------------------
 
-class ClickIt(Frame):
-    def __init__(self, master):
-        Frame.__init__(self, master)
-        self.pack()
-        button = Button(self, text='Click it', command=self.clicked)
-        button.pack()
-
-    def clicked(self):
-        time = strftime('Day: %d %b %Y\nTime: %H:%M:%S %p\n', localtime())
-        showinfo(message=time)
-
-# root = Tk()
-# app = ClickIt(root)
-# app.pack()
-# root.mainloop()
-
-
-class Day(Frame):
-    
-    def __init__(self, master):
-        Frame.__init__(self, master)
+class Draw(Frame):
+    def __init__(self, parent):
+        Frame.__init__(self, parent)
         self.pack()
 
-        label = Label(self, text='Enter date')
-        label.grid(row=0, column=0)
+        self.oldx, self.oldy = 0, 0
 
-        self.dateEnt = Entry(self)
-        self.dateEnt.grid(row=0, column=1)
+        self.canvas = Canvas(self, height=150, width=300)
+        self.canvas.bind("<Button-1>", self.begin)
+        self.canvas.bind("<Button1-Motion>", self.draw)
+        self.canvas.pack(expand=True, fill=BOTH)
 
-        button = Button(self, text='Enter', command=self.compute)
-        button.grid(row=1, column=0, columnspan=2)
+    def begin(self, event):
+        'initializes the start of the curve to mouse position'
+        self.oldx, self.oldy = event.x, event.y
 
-    def compute(self):
+    def draw(self, event):
+        newx, newy = event.x, event.y
+        self.canvas.create_line(self.oldx, self.oldy, newx, newy)
+        self.oldx, self.oldy = newx, newy
 
-        date = self.dateEnt.get()
-        weekday = strftime('%A', strptime(date, '%b %d, %Y'))
-        showinfo(message='{} was a {}'.format(date, weekday))
-        self.dateEnt.delete(0, END)
 
 root = Tk()
-day = Day(root)
-day.pack()
-clickit = ClickIt(root)
-clickit.pack()
-root.mainloop()
+draw = Draw(root)
+draw.mainloop()
