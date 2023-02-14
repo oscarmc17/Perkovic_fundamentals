@@ -229,28 +229,92 @@ from tkinter.messagebox import showinfo
 
 # ------------------------------- 9.9 -------------------------------
 
+# class Draw(Frame):
+#     def __init__(self, parent):
+#         Frame.__init__(self, parent)
+#         self.pack()
+
+#         self.oldx, self.oldy = 0, 0
+
+#         self.canvas = Canvas(self, height=150, width=300)
+#         self.canvas.bind("<Button-1>", self.begin)
+#         self.canvas.bind("<Button1-Motion>", self.draw)
+#         self.canvas.pack(expand=True, fill=BOTH)
+
+#     def begin(self, event):
+#         'initializes the start of the curve to mouse position'
+#         self.oldx, self.oldy = event.x, event.y
+
+#     def draw(self, event):
+#         newx, newy = event.x, event.y
+#         self.canvas.create_line(self.oldx, self.oldy, newx, newy)
+#         self.oldx, self.oldy = newx, newy
+
+
+# root = Tk()
+# draw = Draw(root)
+# draw.mainloop()
+
+
 class Draw(Frame):
-    def __init__(self, parent):
-        Frame.__init__(self, parent)
+    def __init__(self, master):
+        Frame.__init__(self, master)
         self.pack()
 
-        self.oldx, self.oldy = 0, 0
+        self.x, self.y = 50, 75
 
-        self.canvas = Canvas(self, height=150, width=300)
-        self.canvas.bind("<Button-1>", self.begin)
-        self.canvas.bind("<Button1-Motion>", self.draw)
-        self.canvas.pack(expand=True, fill=BOTH)
+        self.canvas = Canvas(self, height=100, width=150, relief=SUNKEN, borderwidth=3)
+        self.canvas.grid(row=1, column=0, columnspan=0)
 
-    def begin(self, event):
-        'initializes the start of the curve to mouse position'
-        self.oldx, self.oldy = event.x, event.y
+        b = Button(master, text='up', command=self.up)
+        b.grid(row=0, column=0, columnspan=2)
 
-    def draw(self, event):
-        newx, newy = event.x, event.y
-        self.canvas.create_line(self.oldx, self.oldy, newx, newy)
-        self.oldx, self.oldy = newx, newy
+    def up(self):
+        self.canvas.create_line(self.x, self.y, self.x, self.y-10)
+        self.y -= 10
 
 
 root = Tk()
-draw = Draw(root)
-draw.mainloop()
+app = Draw(root)
+
+# def up():
+#     global y, canvas
+#     canvas.create_line(x, y, x, y-10)
+#     y -= 10
+
+
+# def left():
+#     global x, canvas
+#     canvas.create_line(x, y, x-10, y)
+#     x -= 10
+
+
+# def right():
+#     global x, canvas
+#     canvas.create_line(x, y, x+10, y)
+#     x += 10
+
+
+# def down():
+#     global y, canvas
+#     canvas.create_line(x, y, x, y+10)
+#     y += 10
+
+# canvas = Canvas(root, height=100, width=150, relief=SUNKEN, borderwidth=3)
+# canvas.pack(side=LEFT)
+
+# box = Frame(root)
+# box.pack(side=RIGHT)
+
+# button = Button(box, text='Up', command=up)
+# button.grid(row=0, column=0, columnspan=2)
+# button = Button(box, text='Left', command=left)
+# button.grid(row=1, column=0)
+# button = Button(box, text='right', command=right)
+# button.grid(row=1, column=1)
+# button = Button(box, text='down', command=down)
+# button.grid(row=2, column=0, columnspan=2)
+
+# x, y = 50, 75
+
+app.mainloop()
