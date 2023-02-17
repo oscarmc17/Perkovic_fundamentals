@@ -263,20 +263,43 @@ class Draw(Frame):
 
         self.x, self.y = 50, 75
 
-        self.canvas = Canvas(self, height=100, width=150, relief=SUNKEN, borderwidth=3)
-        self.canvas.grid(row=1, column=0, columnspan=0)
+        self.canvas = Canvas(self, height=100, width=150,
+                             relief=SUNKEN, borderwidth=3)
+        self.canvas.pack(side=LEFT)
 
-        b = Button(master, text='up', command=self.up)
-        b.grid(row=0, column=0, columnspan=2)
+        self.buttons = Frame(self)
+        self.buttons.pack(side=RIGHT)
+
+        b1 = Button(self.buttons, text='up', command=self.up)
+        b2 = Button(self.buttons, text='left', command=self.left)
+        b3 = Button(self.buttons, text='right', command=self.right)
+        b4 = Button(self.buttons, text='down', command=self.down)
+        b1.grid(row=0, column=0, columnspan=2)
+        b2.grid(row=1, column=0, columnspan=1)
+        b3.grid(row=1, column=1, columnspan=2)
+        b4.grid(row=2, column=0, columnspan=2)
 
     def up(self):
         self.canvas.create_line(self.x, self.y, self.x, self.y-10)
         self.y -= 10
 
+    def left(self):
+        self.canvas.create_line(self.x, self.y, self.x-10, self.y)
+        self.x -= 10
+
+    def right(self):
+        self.canvas.create_line(self.x, self.y, self.x+10, self.y)
+        self.x += 10
+
+    def down(self):
+        self.canvas.create_line(self.x, self.y, self.x, self.y+10)
+        self.y += 10
+
 
 root = Tk()
 app = Draw(root)
-
+# app.pack()
+app.mainloop()
 # def up():
 #     global y, canvas
 #     canvas.create_line(x, y, x, y-10)
@@ -316,5 +339,3 @@ app = Draw(root)
 # button.grid(row=2, column=0, columnspan=2)
 
 # x, y = 50, 75
-
-app.mainloop()
