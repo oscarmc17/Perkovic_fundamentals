@@ -1,4 +1,4 @@
-from tkinter import Tk, Button, LEFT, RIGHT, Label, Entry, END, Text, BOTH, Canvas, Frame, SUNKEN, Event
+from tkinter import Tk, Button, LEFT, RIGHT, Label, Entry, END, Text, BOTH, Canvas, Frame, SUNKEN
 from time import strftime, localtime, gmtime, strptime
 from tkinter.messagebox import showinfo
 
@@ -278,21 +278,25 @@ class Draw(Frame):
         b2.grid(row=1, column=0, columnspan=1)
         b3.grid(row=1, column=1, columnspan=2)
         b4.grid(row=2, column=0, columnspan=2)
-        b1.bind('<KeyPress-w>', lambda event: self.up())
+        # master.bind('<KeyPress-w>', lambda event: self.up())
+        master.bind('<KeyPress-w>', self.up)
+        master.bind('<a>', self.left)
+        master.bind('<s>', self.down)
+        master.bind('<KeyPress-d>', self.right)
 
-    def up(self):
+    def up(self, _event=None):
         self.canvas.create_line(self.x, self.y, self.x, self.y-10)
         self.y -= 10
 
-    def left(self):
+    def left(self, _event=None):
         self.canvas.create_line(self.x, self.y, self.x-10, self.y)
         self.x -= 10
 
-    def right(self):
+    def right(self, _event=None):
         self.canvas.create_line(self.x, self.y, self.x+10, self.y)
         self.x += 10
 
-    def down(self):
+    def down(self, _event=None):
         self.canvas.create_line(self.x, self.y, self.x, self.y+10)
         self.y += 10
 
