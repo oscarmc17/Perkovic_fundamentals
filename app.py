@@ -274,15 +274,18 @@ class Draw(Frame):
         b2 = Button(self.buttons, text='left', command=self.left)
         b3 = Button(self.buttons, text='right', command=self.right)
         b4 = Button(self.buttons, text='down', command=self.down)
+        clear = Button(self.buttons, text='clear', command=self.clear)
         b1.grid(row=0, column=0, columnspan=2)
         b2.grid(row=1, column=0, columnspan=1)
         b3.grid(row=1, column=1, columnspan=2)
         b4.grid(row=2, column=0, columnspan=2)
+        clear.grid(row=5, column=0, columnspan=3)
         # master.bind('<KeyPress-w>', lambda event: self.up())
         master.bind('<KeyPress-w>', self.up)
         master.bind('<a>', self.left)
         master.bind('<s>', self.down)
         master.bind('<KeyPress-d>', self.right)
+        master.bind('<Return>', self.clear)
 
     def up(self, _event=None):
         self.canvas.create_line(self.x, self.y, self.x, self.y-10)
@@ -299,6 +302,9 @@ class Draw(Frame):
     def down(self, _event=None):
         self.canvas.create_line(self.x, self.y, self.x, self.y+10)
         self.y += 10
+
+    def clear(self, _event=None):
+        self.canvas.delete('all')
 
 
 root = Tk()
