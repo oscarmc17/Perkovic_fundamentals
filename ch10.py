@@ -63,10 +63,22 @@
 
 
 # Practice Problem 10.3
-def factorial(n):
-    'returns n!'
-    if n == 0:  # base case
-        return 1
-    return factorial(n-1) * n   # recursive step when n > 0
+# def factorial(n):
+#     'returns n!'
+#     if n == 0:  # base case
+#         return 1
+#     return factorial(n-1) * n   # recursive step when n > 0
 
-print(factorial(10))
+# print(factorial(10))
+
+
+def pattern(n):
+    'prints the nth pattern'
+    if n == 0:
+        print(0)
+    else:
+        pattern(n-1)
+        print(n)
+        pattern(n-1)
+
+pattern(1)
