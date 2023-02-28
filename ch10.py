@@ -84,14 +84,20 @@
 # pattern(1)
 
 # PRACTICE PROBLEM 10.4
-def pattern2(n):
-    if n > 0:
-        pattern2(n-1)
-        print(n * '*')
-        pattern2(n-1)
+# def pattern2(n):
+#     if n > 0:
+#         pattern2(n-1)
+#         print(n * '*')
+#         pattern2(n-1)
+
+# pattern2(0)
+# pattern2(1)
+# pattern2(2)
+# pattern2(3)
 
 
-pattern2(0)
-pattern2(1)
-pattern2(2)
-pattern2(3)
+def koch(n):
+    if n == 0:
+        return 'F'
+    tmp = koch(n-1)
+    return tmp+'L'+tmp+'R'+tmp+'L'+tmp
