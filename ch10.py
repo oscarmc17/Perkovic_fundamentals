@@ -71,14 +71,27 @@
 
 # print(factorial(10))
 
+# ------------------------------- 10.4 -------------------------------
+# def pattern(n):
+#     'prints the nth pattern'
+#     if n == 0:               # base case
+#         print(0, end=" ")
+#     else:                    # recursive step: n > 0
+#         pattern(n-1)            # print n-1st pattern
+#         print(n, end=" ")                # print n
+#         pattern(n-1)            # print n-1st pattern
 
-def pattern(n):
-    'prints the nth pattern'
-    if n == 0:
-        print(0)
-    else:
-        pattern(n-1)
-        print(n)
-        pattern(n-1)
+# pattern(1)
 
-pattern(1)
+# PRACTICE PROBLEM 10.4
+def pattern2(n):
+    if n > 0:
+        pattern2(n-1)
+        print(n * '*')
+        pattern2(n-1)
+
+
+pattern2(0)
+pattern2(1)
+pattern2(2)
+pattern2(3)
