@@ -96,14 +96,14 @@
 # pattern2(3)
 
 # ------------------------------- 10.5 -------------------------------
-from turtle import Screen, Turtle
+# from turtle import Screen, Turtle
 
 
-def koch(n):
-    if n == 0:
-        return 'F'
-    tmp = koch(n-1)
-    return tmp+'L'+tmp+'R'+tmp+'L'+tmp
+# def koch(n):
+#     if n == 0:
+#         return 'F'
+#     tmp = koch(n-1)
+#     return tmp+'L'+tmp+'R'+tmp+'L'+tmp
 
 # def drawKoch(n):
 #     'draws nth Koch curve using instructions from function koch()'
@@ -124,18 +124,55 @@ def koch(n):
 
 
 # PRACTICE PROBLEM 10.5
-def drawSnowflake(n):
-    s = Screen()
-    t = Turtle()
-    directions = koch(n)
+# def drawSnowflake(n):
+#     s = Screen()
+#     t = Turtle()
+#     directions = koch(n)
 
-    for i in range(3):
-        for move in directions:
-            if move == 'F':
-                t.fd(300/3**n)
-            if move == 'L':
-                t.lt(60)
-            if move == 'R':
-                t.rt(120)
-                t.rt(120)
-        s.bye()
+#     for i in range(3):
+#         for move in directions:
+#             if move == 'F':
+#                 t.fd(300/3**n)
+#             if move == 'L':
+#                 t.lt(60)
+#             if move == 'R':
+#                 t.rt(120)
+#                 t.rt(120)
+#         s.bye()
+
+
+# ------------------------------- 10.6 -------------------------------
+# def recSum(lst):
+#     'returns the sum of items in list lst'
+#     if len(lst) == 0:
+#         return 0
+#     return recSum(lst[:-1]) + lst[-1]
+
+
+# PRACTICE PROBLEM 10.5
+# def recNeg(lst):
+#     if len(lst) == 0:
+#         return False
+#     return recNeg(lst[:-1]) or lst[-1] < 0
+
+# print(recNeg([3, 1, -1, 5]))
+# print(recNeg([3, 1, 0, 5]))
+
+def recIncr(lst):
+    if len(lst) == 0:
+        return []
+    return recIncr(lst[:-1]) + [lst[-1]+1]
+
+lst = [1, 4, 9, 16, 25]
+# print(recIncr(lst))
+
+def f(i):
+    return i + 1
+
+def recMap(lst, f):
+    if len(lst) == 0:
+        return []
+    return recMap(lst[:-1], f) + [f(lst[-1])]
+
+
+print(recMap(lst, f))
