@@ -149,7 +149,7 @@
 #     return recSum(lst[:-1]) + lst[-1]
 
 
-# PRACTICE PROBLEM 10.5
+# PRACTICE PROBLEM 10.6
 # def recNeg(lst):
 #     if len(lst) == 0:
 #         return False
@@ -158,21 +158,39 @@
 # print(recNeg([3, 1, -1, 5]))
 # print(recNeg([3, 1, 0, 5]))
 
-def recIncr(lst):
-    if len(lst) == 0:
-        return []
-    return recIncr(lst[:-1]) + [lst[-1]+1]
+# def recIncr(lst):
+#     if len(lst) == 0:
+#         return []
+#     return recIncr(lst[:-1]) + [lst[-1]+1]
 
-lst = [1, 4, 9, 16, 25]
-# print(recIncr(lst))
+# lst = [1, 4, 9, 16, 25]
+# # print(recIncr(lst))
 
-def f(i):
-    return i + 1
+# def f(i):
+#     return i + 1
 
-def recMap(lst, f):
-    if len(lst) == 0:
-        return []
-    return recMap(lst[:-1], f) + [f(lst[-1])]
+# def recMap(lst, f):
+#     if len(lst) == 0:
+#         return []
+#     return recMap(lst[:-1], f) + [f(lst[-1])]
 
 
-print(recMap(lst, f))
+# print(recMap(lst, f))
+
+def power(a, n):
+    'returns a to the nth power'
+    res = 1
+    for i in range(n):
+        res *= a
+    return res
+
+def rpower(a, n):
+    if n == 0:
+        return 1
+    
+    tmp = rpower(a, n//2)
+
+    if n % 2 == 0:
+        return tmp * tmp
+    else:
+        return a * tmp * tmp
