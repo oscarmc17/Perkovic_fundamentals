@@ -46,8 +46,27 @@ from re import findall
 # linkparser = LinkParser()
 # linkparser.feed(content)
 
-print(findall('best', 'beetbtbelt?bet, best'))
-print(findall('be.t', 'beetbtbelt?bet, best'))
-print(findall('be?t', 'beetbtbelt?bet, best'))
-print(findall('be*t', 'beetbtbelt?bet, best'))
-print(findall('be+t', 'beetbtbelt?bet, best'))
+# print(findall('best', 'beetbtbelt?bet, best'))
+# print(findall('be.t', 'beetbtbelt?bet, best'))
+# print(findall('be?t', 'beetbtbelt?bet, best'))
+# print(findall('be*t', 'beetbtbelt?bet, best'))
+# print(findall('be+t', 'beetbtbelt?bet, best'))
+
+# # Matching the longer substring only
+# print(findall('e+', 'beeeetbet bt'))
+
+# Practice Problem 11.6
+def frequency(content):
+    pattern = '[a-zA-Z]+'
+    words = findall(pattern, content)
+    dictionary = {}
+    for w in words:
+        if w in dictionary:
+            dictionary[w] += 1
+        else:
+            dictionary[w] = 1
+    return dictionary
+
+content = 'The pure and simple truth is rarely pure and never\ simple.'
+
+print(frequency(content))
