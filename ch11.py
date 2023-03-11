@@ -1,6 +1,7 @@
 # ------------------------------- 11.1 -------------------------------
 from html.parser import HTMLParser
 from urllib.request import urlopen
+from re import findall
 
 # def getSource(url):
 #     'returns the content of resource specified by url as a string'
@@ -29,18 +30,24 @@ from urllib.request import urlopen
 # parser = HTMLParser()
 # parser.feed(content)
 
-class LinkParser(HTMLParser):
-    '''HTML doc parser that prints values of href attributes in anchor start tags'''
-    def handle_starttag(self, tag, attrs):
-        'print value of href attribute if any'
-        if tag == 'a':  # if anchor tag
-            # search for href attribute and print its value
-            for attr in attrs:
-                if attr[0] == 'href':
-                    print(attr[1])
+# class LinkParser(HTMLParser):
+#     '''HTML doc parser that prints values of href attributes in anchor start tags'''
+#     def handle_starttag(self, tag, attrs):
+#         'print value of href attribute if any'
+#         if tag == 'a':  # if anchor tag
+#             # search for href attribute and print its value
+#             for attr in attrs:
+#                 if attr[0] == 'href':
+#                     print(attr[1])
 
 
-rsrce = urlopen('http://www.w3.org/Consortium/mission.html')
-content = rsrce.read().decode()
-linkparser = LinkParser()
-linkparser.feed(content)
+# rsrce = urlopen('http://www.w3.org/Consortium/mission.html')
+# content = rsrce.read().decode()
+# linkparser = LinkParser()
+# linkparser.feed(content)
+
+print(findall('best', 'beetbtbelt?bet, best'))
+print(findall('be.t', 'beetbtbelt?bet, best'))
+print(findall('be?t', 'beetbtbelt?bet, best'))
+print(findall('be*t', 'beetbtbelt?bet, best'))
+print(findall('be+t', 'beetbtbelt?bet, best'))
