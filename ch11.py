@@ -70,3 +70,11 @@ def frequency(content):
 content = 'The pure and simple truth is rarely pure and never\ simple.'
 
 print(frequency(content))
+
+
+def frequency2(content):
+    pattern = '[a-zA-Z]+'
+    words = findall(pattern, content)
+    dictionary = {}
+
+print(frequency2(content))
