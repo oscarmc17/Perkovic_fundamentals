@@ -6,6 +6,22 @@ cur = con.cursor()
 
 cur.execute("""CREATE TABLE Keywords 
             (Url text,
-             word text,
-             Freq int)
-            )""")
+             Word text,
+             Freq int)""")
+
+cur.execute("""INSERT INTO Keywords
+            VALUES ('one.html', 'Beijing', 3)""")
+
+
+
+url, word, freq = 'one.html', 'Paris', 5
+
+cur.execute("""INSERT INTO Keywords
+            VALUES (?, ?, ?)""", (url, word, freq))
+
+record = ('one.html', 'Chicago', 5)
+
+cur.execute("INSERT INTO Keywords VALUES (?, ?, ?)", record)
+
+con.commit()
+con.close()

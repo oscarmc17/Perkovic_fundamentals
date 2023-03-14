@@ -67,7 +67,7 @@ def frequency(content):
             dictionary[w] = 1
     return dictionary
 
-content = 'The pure and simple truth is rarely pure and never\ simple.'
+content = 'The pure and simple truth is rarely pure and never simple.'
 
 print(frequency(content))
 
