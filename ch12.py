@@ -25,3 +25,18 @@ cur.execute("INSERT INTO Keywords VALUES (?, ?, ?)", record)
 
 con.commit()
 con.close()
+
+# Practice Problem 12.3
+def webData(db, url, links, freq):
+    con = sqlite3.connect(db)
+    cur = con.cursor()
+
+    for word in freq:
+        record = (url, word, freq[word])
+        cur.execute("INSERT INTO Keywords VALUES (?,?,?)", record)
+    for link in links:
+        record = (url, link)
+        cur.execute("INSERT INTO Keywords VALUES (?,?)", record) 
+        
+    con.commit()
+    con.close()
