@@ -47,7 +47,14 @@ import sqlite3
 # print([len(word) for word in ['hawk', 'hen', 'hog', 'hyena']])
 
 # PRACTICE PROBLEM 12.5
-words = ['hawk', 'hen', 'hog', 'hyena']
-print([word.capitalize() for word in words])
-print([(word, len(word)) for word in words])
-print([[(c, word) for c in word] for word in words])
+# words = ['hawk', 'hen', 'hog', 'hyena']
+# print([word.capitalize() for word in words])
+# print([(word, len(word)) for word in words])
+# print([[(c, word) for c in word] for word in words])
+
+# MAP REDUCE PROBLEM-SOLVING FRAMEKWORK
+words = ['two', 'three', 'one', 'three', 'three', 'five', 'one', 'five']
+
+def occurence(word):
+    'returns list containing tuple (word, 1)'
+    return [(word, 1)]
