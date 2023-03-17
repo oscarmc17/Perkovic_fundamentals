@@ -55,6 +55,26 @@ import sqlite3
 # MAP REDUCE PROBLEM-SOLVING FRAMEKWORK
 words = ['two', 'three', 'one', 'three', 'three', 'five', 'one', 'five']
 
-def occurence(word):
+def occurrence(word):
     'returns list containing tuple (word, 1)'
     return [(word, 1)]
+
+intermediate1 = [occurrence(word) for word in words]
+print(intermediate1)
+
+
+def partition(intermediate1):
+    dct = {}
+
+    for lst in intermediate1:
+        for key, value in lst:
+
+            if key in dct:
+                dct[key].append(value)
+            else:
+                dct[key] = [value]
+    
+    return dct.items()
+
+intermediate2 = partition(intermediate1)
+print(intermediate2)
